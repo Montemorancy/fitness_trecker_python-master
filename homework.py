@@ -1,6 +1,7 @@
 from dataclasses import dataclass, asdict
 from typing import Dict
 
+
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -46,12 +47,10 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        t = Training(1, 2, 3) 
-        t.get_spent_calories() 
+        t = Training(1, 2, 3)
+        t.get_spent_calories()
         raise NotImplementedError(
-            f'Определите get_spent_calories в %s.' %
-            (self.__class__.__name__)
-        )
+            f'Определите get_spent_calories в ' (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -156,7 +155,10 @@ def read_package(workout_type: str, data: list) -> Training:
         'WLK': SportsWalking
     }
     if workout_type not in sensor_parameters:
-        return KeyError(f'вид тренировки не поддерживается. Доступные виды тренировок {workout_type}')
+        return KeyError(
+            f'вид тренировки не поддерживается.'
+            f'Доступные виды тренировок {workout_type}'
+        )
     else:
         return sensor_parameters[workout_type](*data)
 

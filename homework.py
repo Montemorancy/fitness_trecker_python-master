@@ -1,5 +1,5 @@
 from dataclasses import dataclass, asdict
-from typing import Dict
+from typing import Dict, Type
 
 
 @dataclass
@@ -50,7 +50,9 @@ class Training:
         t = Training(1, 2, 3)
         t.get_spent_calories()
         raise NotImplementedError(
-            f'(Определите get_spent_calories в {self.__class__.__name__}')
+            f'(Данный метод реализован в классах-наследниках '
+            f'{self.__class__.__name__}'
+        )
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -149,7 +151,7 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    sensor_parameters: Dict[str, type] = {
+    sensor_parameters: Dict[str, Type[Training]] = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
